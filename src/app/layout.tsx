@@ -2,6 +2,10 @@ import "./globals.css";
 import Link from "next/link";
 import { Home, PlusCircle, User } from "lucide-react";
 
+export const metadata = {
+  title: "Gaz",
+};
+
 export default function RootLayout({
   children,
 }: {
