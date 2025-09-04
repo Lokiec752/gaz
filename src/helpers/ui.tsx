@@ -1,4 +1,3 @@
-// helpers/ui.tsx — proste, lekkie „komponenty” bez zależności
 export function Card(props: React.HTMLAttributes<HTMLDivElement>) {
   const { className = "", ...rest } = props;
   return (
@@ -26,7 +25,7 @@ export function PrimaryButton(
   const { className = "", ...rest } = props;
   return (
     <button
-      className={`w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl font-semibold active:translate-y-px ${className}`}
+      className={`w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl font-semibold active:translate-y-px cursor-pointer ${className}`}
       {...rest}
     />
   );
@@ -38,7 +37,7 @@ export function SuccessButton(
   const { className = "", ...rest } = props;
   return (
     <button
-      className={`w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold active:translate-y-px ${className}`}
+      className={`w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold active:translate-y-px cursor-pointer ${className}`}
       {...rest}
     />
   );
@@ -50,7 +49,7 @@ export function WarnButton(
   const { className = "", ...rest } = props;
   return (
     <button
-      className={`w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-xl font-semibold active:translate-y-px ${className}`}
+      className={`w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-xl font-semibold active:translate-y-px cursor-pointer ${className}`}
       {...rest}
     />
   );
@@ -62,7 +61,7 @@ export function DangerButton(
   const { className = "", ...rest } = props;
   return (
     <button
-      className={`w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-semibold active:translate-y-px ${className}`}
+      className={`w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-semibold active:translate-y-px cursor-pointer ${className}`}
       {...rest}
     />
   );
