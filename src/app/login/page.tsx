@@ -1,4 +1,5 @@
-import { Card, PrimaryButton } from "@/helpers/ui";
+import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
 import { auth, signIn } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -14,9 +15,9 @@ export default async function LoginPage() {
     <div className="h-full flex flex-col items-center">
       <h1 className="text-2xl font-bold mb-6">Logowanie</h1>
       <Card className="w-full space-y-3">
-        <PrimaryButton type="submit" onClick={logIn}>
+        <Button variant="primary" type="submit" onClick={logIn}>
           Zaloguj się z Google
-        </PrimaryButton>
+        </Button>
       </Card>
     </div>
   );

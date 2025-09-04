@@ -1,4 +1,5 @@
-import { Card, SuccessButton } from "@/helpers/ui";
+import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
 
 export default function DashboardPage() {
   return (
@@ -21,7 +22,9 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <SuccessButton className="mt-2">Dodaj nową fakturę</SuccessButton>
+        <Button variant="success" className="mt-2">
+          Dodaj nową fakturę
+        </Button>
       </Card>
     </div>
   );

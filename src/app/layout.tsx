@@ -1,8 +1,8 @@
 import "./globals.css";
 import Link from "next/link";
-import { Home, PlusCircle, User } from "lucide-react";
-import LoginButton from "@/components/LoginButton";
+import { Home, PlusCircle } from "lucide-react";
 import AuthProvider from "@/components/AuthProvider";
+import LoginButton from "@/components/LoginButton";
 
 export const metadata = {
   title: "Gaz",
