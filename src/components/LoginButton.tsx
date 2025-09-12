@@ -17,13 +17,16 @@ export default function LoginButton() {
         className="inline-flex items-center justify-center w-10 h-10 rounded-full"
         aria-label="Profil"
       >
-        <User className="w-6 h-6 cursor-pointer" />
+        <User className="w-6 h-6 text-amber-800 cursor-pointer" />
       </Link>
     );
   }
   return (
     <button className="inline-flex items-center justify-center w-10 h-10 rounded-full">
-      <LogOut className="w-6 h-6 cursor-pointer" onClick={logOut} />
+      <LogOut
+        className="w-6 h-6 text-amber-800 cursor-pointer"
+        onClick={logOut}
+      />
     </button>
   );
 }

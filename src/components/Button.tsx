@@ -3,10 +3,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = {
-  primary: "bg-blue-500 hover:bg-blue-600 text-white",
-  success: "bg-green-500 hover:bg-green-600 text-white",
-  warning: "bg-yellow-400 hover:bg-yellow-500 text-black",
-  danger: "bg-red-500 hover:bg-red-600 text-white",
+  primary: "bg-amber-900 hover:bg-amber-950 text-white",
+  success: "bg-emerald-600 hover:bg-emerald-700 text-white",
+  warning: "bg-orange-600 hover:bg-orange-700 text-white",
+  danger: "bg-red-600 hover:bg-red-700 text-white",
 } as const;
 
 export function Button({
