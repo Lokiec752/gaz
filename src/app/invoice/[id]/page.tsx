@@ -7,6 +7,7 @@ import {
 } from "@/app/actions/invoice";
 import { auth } from "@/auth";
 import { DeleteInvoiceButton } from "./DeleteInvoiceButton";
+import Link from "next/link";
 
 export default async function InvoiceDetailsPage({
   params,
@@ -93,9 +94,11 @@ export default async function InvoiceDetailsPage({
 
       {isAdmin && (
         <div className="grid grid-cols-2 gap-3">
-          <Button variant="warning" className="font-bold">
-            Edytuj
-          </Button>
+          <Link href={`/edit/${invoice.id}`}>
+            <Button variant="warning" className="font-bold">
+              Edytuj
+            </Button>
+          </Link>
           <DeleteInvoiceButton invoiceId={invoice.id} />
         </div>
       )}
