@@ -80,3 +80,8 @@ export async function getInvoiceById(id: string): Promise<IInvoice | null> {
   await connectToDatabase();
   return Invoice.findById(id).exec();
 }
+
+export async function deleteInvoiceById(id: string): Promise<void> {
+  await connectToDatabase();
+  await Invoice.findByIdAndDelete(id).exec();
+}

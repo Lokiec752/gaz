@@ -1,7 +1,12 @@
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
-import { getAllInvoices, getInvoiceById } from "@/app/actions/invoice";
+import {
+  deleteInvoiceById,
+  getAllInvoices,
+  getInvoiceById,
+} from "@/app/actions/invoice";
 import { auth } from "@/auth";
+import { DeleteInvoiceButton } from "./DeleteInvoiceButton";
 
 export default async function InvoiceDetailsPage({
   params,
@@ -91,9 +96,7 @@ export default async function InvoiceDetailsPage({
           <Button variant="warning" className="font-bold">
             Edytuj
           </Button>
-          <Button variant="danger" className="font-bold">
-            Usuń
-          </Button>
+          <DeleteInvoiceButton invoiceId={invoice.id} />
         </div>
       )}
     </div>
