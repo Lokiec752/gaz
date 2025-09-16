@@ -1,28 +1,29 @@
 import Link from "next/link";
-import { Card } from "@/components/Card";
+import { getAllInvoices } from "../actions/invoice";
+import { InvoiceOverview } from "@/components/InvoiceOverview";
 
-export default function HistoryPage() {
-  const invoices = [
-    { id: 1, date: "01.08.2025", total: "430,00 zł" },
-    { id: 2, date: "01.07.2025", total: "390,00 zł" },
-  ];
+export default async function History() {
+  const allInvoices = await getAllInvoices();
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-bold text-amber-900">Historia faktur</h1>
+      <h1 className="text-xl font-bold text-amber-900">Ostatnie faktury</h1>
 
-      <div className="space-y-3">
-        {invoices.map((inv) => (
-          <Link key={inv.id} href={`/invoice/${inv.id}`}>
-            <Card className="flex justify-between items-center hover:bg-amber-100/60 transition-colors cursor-pointer">
-              <span className="text-amber-700 font-medium">{inv.date}</span>
-              <span className="font-bold text-lg text-amber-900">
-                {inv.total}
-              </span>
-            </Card>
-          </Link>
-        ))}
-      </div>
+      {allInvoices.map((invoice) => (
+        <Link
+          key={invoice.id}
+          href={`/invoice/${invoice.id}`}
+          className="space-y-4 p-5"
+        >
+          <InvoiceOverview
+            key={invoice.date.toISOString()}
+            date={invoice.date}
+            meterReading22E={invoice.charges.house22E}
+            meterReading22H={invoice.charges.house22H}
+            total={invoice.total}
+          />
+        </Link>
+      ))}
     </div>
   );
 }

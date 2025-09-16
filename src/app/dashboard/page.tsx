@@ -1,29 +1,34 @@
 import Link from "next/link";
-import { getAllInvoices } from "../actions/invoice";
 import { InvoiceOverview } from "@/components/InvoiceOverview";
+import { getTheLastInvoice } from "../actions/invoice";
+import { Button } from "@/components/Button";
 
 export default async function DashboardPage() {
-  const allInvoices = await getAllInvoices();
-
+  const lastInvoice = await getTheLastInvoice();
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-bold text-amber-900">Ostatnie faktury</h1>
+      <h1 className="text-xl font-bold text-amber-900">Gaz</h1>
 
-      {allInvoices.map((invoice) => (
-        <Link
-          key={invoice.id}
-          href={`/invoice/${invoice.id}`}
-          className="space-y-4 p-5"
-        >
-          <InvoiceOverview
-            key={invoice.date.toISOString()}
-            date={invoice.date}
-            meterReading22E={invoice.charges.house22E}
-            meterReading22H={invoice.charges.house22H}
-            total={invoice.total}
-          />
-        </Link>
-      ))}
+      {lastInvoice && (
+        <div>
+          <p className="flex justify-between items-center">
+            <span className="text-xl text-amber-700 font-bold">
+              Ostatnia faktura
+            </span>
+          </p>
+          <Link href={`/invoice/${lastInvoice.id}`} className="space-y-4 p-5">
+            <InvoiceOverview
+              date={lastInvoice.date}
+              meterReading22E={lastInvoice.charges.house22E}
+              meterReading22H={lastInvoice.charges.house22H}
+              total={lastInvoice.total}
+            />
+          </Link>
+        </div>
+      )}
+      <Link href="/history">
+        <Button variant="success">Przejdź do historii</Button>
+      </Link>
     </div>
   );
 }
