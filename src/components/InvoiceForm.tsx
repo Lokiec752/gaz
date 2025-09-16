@@ -4,7 +4,6 @@ import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { Invoice } from "@/models/Invoice";
 
 function handleNumberInput(event: React.FormEvent<HTMLInputElement>) {
   const input = event.currentTarget;
@@ -28,17 +27,27 @@ function handleNumberInput(event: React.FormEvent<HTMLInputElement>) {
 }
 
 type InvoiceFormProps = {
-  initialData?: Partial<Invoice>;
-  action: (formData: FormData) => Promise<void>;
-  submitButtonText: string;
   title: string;
+  submitButtonText: string;
+  initialGasFuel?: number;
+  initialFixedDistribution?: number;
+  initialSubscription?: number;
+  initialVariableDistribution?: number;
+  initialMeterReading22E?: number;
+  initialMeterReading22H?: number;
+  action: (formData: FormData) => Promise<void>;
 };
 
 export function InvoiceForm({
-  initialData,
-  action,
   submitButtonText,
   title,
+  initialGasFuel,
+  initialFixedDistribution,
+  initialSubscription,
+  initialVariableDistribution,
+  initialMeterReading22E,
+  initialMeterReading22H,
+  action,
 }: InvoiceFormProps) {
   return (
     <div className="space-y-6">
@@ -60,7 +69,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="0 zł"
-              defaultValue={initialData?.gasFuel}
+              defaultValue={initialGasFuel}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
@@ -78,7 +87,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="0 zł"
-              defaultValue={initialData?.subscription}
+              defaultValue={initialSubscription}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
@@ -96,7 +105,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="0 zł"
-              defaultValue={initialData?.fixedDistribution}
+              defaultValue={initialFixedDistribution}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
@@ -114,7 +123,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="0 zł"
-              defaultValue={initialData?.variableDistribution}
+              defaultValue={initialVariableDistribution}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
@@ -136,7 +145,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="Wprowadź stan licznika"
-              defaultValue={initialData?.meterReading22E}
+              defaultValue={initialMeterReading22E}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
@@ -154,7 +163,7 @@ export function InvoiceForm({
               type="text"
               inputMode="decimal"
               placeholder="Wprowadź stan licznika"
-              defaultValue={initialData?.meterReading22H}
+              defaultValue={initialMeterReading22H}
               onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />

@@ -79,16 +79,25 @@ function calculate22ECharge(
   return parseFloat(total22E.toFixed(2));
 }
 
+export async function getTheLastInvoice(): Promise<Invoice | null> {
+  try {
+    await connectToDatabase();
+    const lastInvoice = await InvoiceModel.findOne().sort({ date: -1 }).exec();
+    return lastInvoice;
+  } catch (error) {
+    console.error("Error fetching the last invoice:", error);
+    return null;
+  }
+}
+
 async function getPreviousMeterReadings(
-  userEmail: string,
   currentDate: Date
 ): Promise<{ meterReading22E: number; meterReading22H: number }> {
   try {
     await connectToDatabase();
 
-    // Find the most recent invoice before the current date for this user
+    // Find the most recent invoice before the current date (across all users)
     const previousInvoice = await InvoiceModel.findOne({
-      userEmail: userEmail,
       date: { $lt: currentDate },
     })
       .sort({ date: -1 })
@@ -154,10 +163,7 @@ export async function createInvoice(formData: FormData) {
 
     // Get previous meter readings for usage calculation
     const currentDate = new Date();
-    const previousMeterReadings = await getPreviousMeterReadings(
-      session.user.email,
-      currentDate
-    );
+    const previousMeterReadings = await getPreviousMeterReadings(currentDate);
 
     // Calculate charges using your business logic with previous readings
     const charge22H = calculate22HCharge(formDataParsed, previousMeterReadings);
@@ -252,7 +258,6 @@ export async function updateInvoice(id: string, formData: FormData) {
 
     // Get previous meter readings (excluding the current invoice being updated)
     const previousMeterReadings = await getPreviousMeterReadings(
-      session.user.email,
       existingInvoice.date
     );
 

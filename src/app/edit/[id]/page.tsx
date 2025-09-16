@@ -47,10 +47,15 @@ export default async function EditInvoicePage({
 
   return (
     <InvoiceForm
-      initialData={invoiceData}
-      action={updateInvoiceWithId}
-      submitButtonText="Zapisz zmiany"
       title="Edytuj fakturę"
+      submitButtonText="Zapisz zmiany"
+      initialGasFuel={invoiceData.gasFuel}
+      initialSubscription={invoiceData.subscription}
+      initialFixedDistribution={invoiceData.fixedDistribution}
+      initialVariableDistribution={invoiceData.variableDistribution}
+      initialMeterReading22E={invoiceData.meterReading22E}
+      initialMeterReading22H={invoiceData.meterReading22H}
+      action={updateInvoiceWithId}
     />
   );
 }
