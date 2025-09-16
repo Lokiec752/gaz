@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth";
 import { connectToDatabase } from "@/lib/mongodb";
-import { Invoice } from "@/models/Invoice";
+import { IInvoice, Invoice } from "@/models/Invoice";
 import { redirect } from "next/navigation";
 
 type CreateInvoiceData = {
@@ -71,7 +71,12 @@ export async function createInvoice(formData: FormData) {
   redirect("/dashboard");
 }
 
-export async function getAllInvoices() {
+export async function getAllInvoices(): Promise<IInvoice[]> {
   await connectToDatabase();
   return Invoice.find().sort({ date: -1 }).exec();
+}
+
+export async function getInvoiceById(id: string): Promise<IInvoice | null> {
+  await connectToDatabase();
+  return Invoice.findById(id).exec();
 }

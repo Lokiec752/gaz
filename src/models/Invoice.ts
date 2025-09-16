@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IInvoice extends Document {
+  id: string;
   userEmail: string;
   date: Date;
   gasFuel: number;
