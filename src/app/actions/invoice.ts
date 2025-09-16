@@ -70,3 +70,8 @@ export async function createInvoice(formData: FormData) {
   // Redirect to dashboard after successful creation
   redirect("/dashboard");
 }
+
+export async function getAllInvoices() {
+  await connectToDatabase();
+  return Invoice.find().sort({ date: -1 }).exec();
+}
