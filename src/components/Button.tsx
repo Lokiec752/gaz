@@ -3,10 +3,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = {
-  primary: "bg-amber-900 hover:bg-amber-950 text-white",
-  success: "bg-emerald-600 hover:bg-emerald-700 text-white",
-  warning: "bg-orange-600 hover:bg-orange-700 text-white",
-  danger: "bg-red-600 hover:bg-red-700 text-white",
+  primary:
+    "bg-[var(--button-primary)] hover:bg-[var(--button-primary-hover)] text-[var(--button-primary-foreground)]",
+  success:
+    "bg-[var(--button-success)] hover:bg-[var(--button-success-hover)] text-[var(--button-success-foreground)]",
+  warning:
+    "bg-[var(--button-warning)] hover:bg-[var(--button-warning-hover)] text-[var(--button-warning-foreground)]",
+  danger:
+    "bg-[var(--button-danger)] hover:bg-[var(--button-danger-hover)] text-[var(--button-danger-foreground)]",
 } as const;
 
 export function Button({

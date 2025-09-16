@@ -76,6 +76,20 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Button variants - Warm Earth Tones */
+  --button-primary: oklch(0.35 0.12 280); /* Deep purple-blue */
+  --button-primary-foreground: oklch(0.98 0 0);
+  --button-primary-hover: oklch(0.3 0.12 280);
+  --button-success: oklch(0.45 0.15 160); /* Teal green */
+  --button-success-foreground: oklch(0.98 0 0);
+  --button-success-hover: oklch(0.4 0.15 160);
+  --button-warning: oklch(0.6 0.2 45); /* Rich amber */
+  --button-warning-foreground: oklch(0.98 0 0);
+  --button-warning-hover: oklch(0.55 0.2 45);
+  --button-danger: oklch(0.5 0.2 25); /* Deep red-orange */
+  --button-danger-foreground: oklch(0.98 0 0);
+  --button-danger-hover: oklch(0.45 0.2 25);
 }
 
 .dark {
@@ -110,6 +124,20 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
+  /* Button variants for dark mode - Warm Earth Tones */
+  --button-primary: oklch(0.55 0.15 280); /* Brighter purple-blue */
+  --button-primary-foreground: oklch(0.05 0 0);
+  --button-primary-hover: oklch(0.6 0.15 280);
+  --button-success: oklch(0.6 0.18 160); /* Bright teal */
+  --button-success-foreground: oklch(0.05 0 0);
+  --button-success-hover: oklch(0.65 0.18 160);
+  --button-warning: oklch(0.75 0.25 45); /* Bright amber */
+  --button-warning-foreground: oklch(0.98 0 0);
+  --button-warning-hover: oklch(0.8 0.25 45);
+  --button-danger: oklch(0.65 0.25 25); /* Bright red-orange */
+  --button-danger-foreground: oklch(0.05 0 0);
+  --button-danger-hover: oklch(0.7 0.25 25);
 }
 
 @layer base {
