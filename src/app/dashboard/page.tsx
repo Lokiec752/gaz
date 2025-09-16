@@ -26,9 +26,14 @@ export default async function DashboardPage() {
           </Link>
         </div>
       )}
-      <Link href="/history">
-        <Button variant="success">Przejdź do historii</Button>
-      </Link>
+      <div className="flex flex-col gap-4">
+        <Link href="/history">
+          <Button variant="success">Przejdź do historii</Button>
+        </Link>
+        <Link href="/chart">
+          <Button variant="primary">Wyświetl wykres</Button>
+        </Link>
+      </div>
     </div>
   );
 }
