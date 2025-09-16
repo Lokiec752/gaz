@@ -12,46 +12,100 @@ export default function AddInvoicePage() {
       <form className="space-y-6" action={createInvoice}>
         <Card className="space-y-4">
           <SectionTitle>Dane z faktury</SectionTitle>
-          <Input
-            name="gasFuel"
-            type="number"
-            placeholder="Paliwo gazowe (PLN)"
-            className="placeholder:text-amber-400"
-          />
-          <Input
-            name="subscription"
-            type="number"
-            placeholder="Abonament (PLN)"
-            className="placeholder:text-amber-400"
-          />
-          <Input
-            name="fixedDistribution"
-            type="number"
-            placeholder="Dystrybucja stała (PLN)"
-            className="placeholder:text-amber-400"
-          />
-          <Input
-            name="variableDistribution"
-            type="number"
-            placeholder="Dystrybucja zmienna (PLN)"
-            className="placeholder:text-amber-400"
-          />
+          <div className="space-y-2">
+            <label
+              htmlFor="gasFuel"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Paliwo gazowe (PLN)
+            </label>
+            <Input
+              id="gasFuel"
+              name="gasFuel"
+              type="number"
+              placeholder="0 zł"
+              className="placeholder:text-amber-400"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="subscription"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Abonament (PLN)
+            </label>
+            <Input
+              id="subscription"
+              name="subscription"
+              type="number"
+              placeholder="0 zł"
+              className="placeholder:text-amber-400"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="fixedDistribution"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Dystrybucja stała (PLN)
+            </label>
+            <Input
+              id="fixedDistribution"
+              name="fixedDistribution"
+              type="number"
+              placeholder="0 zł"
+              className="placeholder:text-amber-400"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="variableDistribution"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Dystrybucja zmienna (PLN)
+            </label>
+            <Input
+              id="variableDistribution"
+              name="variableDistribution"
+              type="number"
+              placeholder="0 zł"
+              className="placeholder:text-amber-400"
+            />
+          </div>
         </Card>
 
         <Card className="space-y-4">
           <SectionTitle>Stany liczników</SectionTitle>
-          <Input
-            name="meterReading22E"
-            type="number"
-            placeholder="Dom 22E"
-            className="placeholder:text-amber-400"
-          />
-          <Input
-            name="meterReading22H"
-            type="number"
-            placeholder="Dom 22H"
-            className="placeholder:text-amber-400"
-          />
+          <div className="space-y-2">
+            <label
+              htmlFor="meterReading22E"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Dom 22E
+            </label>
+            <Input
+              id="meterReading22E"
+              name="meterReading22E"
+              type="number"
+              placeholder="Wprowadź stan licznika"
+              className="placeholder:text-amber-400"
+            />
+          </div>
+          <div className="space-y-2">
+            <label
+              htmlFor="meterReading22H"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Dom 22H
+            </label>
+            <Input
+              id="meterReading22H"
+              name="meterReading22H"
+              type="number"
+              placeholder="Wprowadź stan licznika"
+              className="placeholder:text-amber-400"
+            />
+          </div>
         </Card>
 
         <Button variant="primary" type="submit" className="font-bold">
