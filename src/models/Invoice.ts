@@ -1,7 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-export interface IInvoice extends Document {
-  id: string;
+type Charges = {
+  house22E: number;
+  house22H: number;
+};
+
+export type Invoice = {
+  id: string; // Mongoose virtual for _id
   userEmail: string;
   date: Date;
   gasFuel: number;
@@ -11,11 +16,12 @@ export interface IInvoice extends Document {
   meterReading22E: number;
   meterReading22H: number;
   total: number;
+  charges: Charges;
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
-const InvoiceSchema = new Schema<IInvoice>(
+const InvoiceSchema = new Schema<Invoice>(
   {
     userEmail: { type: String, required: true, index: true },
     date: { type: Date, default: Date.now },
@@ -26,27 +32,19 @@ const InvoiceSchema = new Schema<IInvoice>(
     meterReading22E: { type: Number, required: true, min: 0 },
     meterReading22H: { type: Number, required: true, min: 0 },
     total: { type: Number, min: 0, default: 0 }, // Not required since it's auto-calculated
+    charges: {
+      house22E: { type: Number, required: true, min: 0 },
+      house22H: { type: Number, required: true, min: 0 },
+    },
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true }, // Include virtuals when converting to JSON
+    toObject: { virtuals: true }, // Include virtuals when converting to Object
   }
 );
 
-// Calculate total before saving
-InvoiceSchema.pre("save", function (next) {
-  const doc = this as IInvoice;
+// No pre-save hook needed - calculations are done in the action functions
 
-  // Calculate total
-  doc.total =
-    doc.gasFuel +
-    doc.subscription +
-    doc.fixedDistribution +
-    doc.variableDistribution +
-    doc.meterReading22E +
-    doc.meterReading22H;
-
-  next();
-});
-
-export const Invoice =
-  mongoose.models.Invoice || mongoose.model<IInvoice>("Invoice", InvoiceSchema);
+export const InvoiceModel =
+  mongoose.models.Invoice || mongoose.model<Invoice>("Invoice", InvoiceSchema);

@@ -40,13 +40,6 @@ export default async function InvoiceDetailsPage({
       <Card className="space-y-3">
         <div className="space-y-2">
           <p className="flex justify-between items-center">
-            <span className="text-amber-700 font-medium">Suma</span>
-            <strong className="text-amber-900">{invoice.total} zł</strong>
-          </p>
-
-          <hr className="my-3 border-amber-200/50" />
-
-          <p className="flex justify-between items-center">
             <span className="text-amber-700 font-medium">Paliwo gazowe</span>
             <strong className="text-amber-900">{invoice.gasFuel} zł</strong>
           </p>
@@ -75,19 +68,44 @@ export default async function InvoiceDetailsPage({
         </div>
 
         <hr className="my-3 border-amber-200/50" />
-
         <div className="space-y-2">
           <p className="flex justify-between items-center">
-            <span className="text-amber-700 font-medium">Dom 22E</span>
+            <span className="text-amber-700 font-medium">Licznik 22E</span>
             <strong className="text-amber-900">
-              {invoice.meterReading22E} zł
+              {invoice.meterReading22E} m³
             </strong>
           </p>
           <p className="flex justify-between items-center">
-            <span className="text-amber-700 font-medium">Dom 22H</span>
+            <span className="text-amber-700 font-medium">Licznik 22H</span>
             <strong className="text-amber-900">
-              {invoice.meterReading22H} zł
+              {invoice.meterReading22H} m³
             </strong>
+          </p>
+        </div>
+
+        <hr className="my-3 border-amber-200/50" />
+
+        <div className="space-y-2">
+          <p className="flex justify-between items-center">
+            <span className="text-amber-700 font-medium">Kwota za 22E</span>
+            <strong className="text-amber-900">
+              {invoice.charges.house22E} zł
+            </strong>
+          </p>
+          <p className="flex justify-between items-center">
+            <span className="text-amber-700 font-medium">Kwota za 22H</span>
+            <strong className="text-amber-900">
+              {invoice.charges.house22H} zł
+            </strong>
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <hr className="my-3 border-amber-200/50" />
+
+          <p className="flex justify-between items-center">
+            <span className="text-amber-700 font-medium">Suma</span>
+            <strong className="text-amber-900">{invoice.total} zł</strong>
           </p>
         </div>
       </Card>

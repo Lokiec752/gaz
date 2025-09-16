@@ -18,8 +18,8 @@ export default async function DashboardPage() {
           <InvoiceOverview
             key={invoice.date.toISOString()}
             date={invoice.date}
-            meterReading22E={invoice.meterReading22E}
-            meterReading22H={invoice.meterReading22H}
+            meterReading22E={invoice.charges.house22E}
+            meterReading22H={invoice.charges.house22H}
             total={invoice.total}
           />
         </Link>

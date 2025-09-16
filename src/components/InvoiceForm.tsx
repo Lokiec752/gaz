@@ -4,10 +4,31 @@ import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { IInvoice } from "@/models/Invoice";
+import { Invoice } from "@/models/Invoice";
+
+function handleNumberInput(event: React.FormEvent<HTMLInputElement>) {
+  const input = event.currentTarget;
+  // Allow numbers, commas, dots, and basic editing
+  const value = input.value;
+
+  // Only allow numbers, one comma or dot, and ensure proper decimal format
+  const sanitized = value
+    .replace(/[^0-9,.]/g, "") // Only allow numbers, comma, dot
+    .replace(/,/g, ".") // Replace comma with dot
+    .replace(/\.{2,}/g, ".") // Replace multiple dots with single dot
+    .replace(/^\./, "0."); // Add leading zero if starts with dot
+
+  // Ensure only one decimal point
+  const parts = sanitized.split(".");
+  if (parts.length > 2) {
+    input.value = parts[0] + "." + parts.slice(1).join("");
+  } else {
+    input.value = sanitized;
+  }
+}
 
 type InvoiceFormProps = {
-  initialData?: Partial<IInvoice>;
+  initialData?: Partial<Invoice>;
   action: (formData: FormData) => Promise<void>;
   submitButtonText: string;
   title: string;
@@ -36,10 +57,11 @@ export function InvoiceForm({
             <Input
               id="gasFuel"
               name="gasFuel"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="0 zł"
               defaultValue={initialData?.gasFuel}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
@@ -53,10 +75,11 @@ export function InvoiceForm({
             <Input
               id="subscription"
               name="subscription"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="0 zł"
               defaultValue={initialData?.subscription}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
@@ -70,10 +93,11 @@ export function InvoiceForm({
             <Input
               id="fixedDistribution"
               name="fixedDistribution"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="0 zł"
               defaultValue={initialData?.fixedDistribution}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
@@ -87,10 +111,11 @@ export function InvoiceForm({
             <Input
               id="variableDistribution"
               name="variableDistribution"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="0 zł"
               defaultValue={initialData?.variableDistribution}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
@@ -108,10 +133,11 @@ export function InvoiceForm({
             <Input
               id="meterReading22E"
               name="meterReading22E"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="Wprowadź stan licznika"
               defaultValue={initialData?.meterReading22E}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
@@ -125,10 +151,11 @@ export function InvoiceForm({
             <Input
               id="meterReading22H"
               name="meterReading22H"
-              type="number"
-              step="0.01"
+              type="text"
+              inputMode="decimal"
               placeholder="Wprowadź stan licznika"
               defaultValue={initialData?.meterReading22H}
+              onInput={handleNumberInput}
               className="placeholder:text-amber-400"
             />
           </div>
