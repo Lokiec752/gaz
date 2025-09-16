@@ -1,6 +1,7 @@
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { getAllInvoices, getInvoiceById } from "@/app/actions/invoice";
+import { auth } from "@/auth";
 
 export default async function InvoiceDetailsPage({
   params,
@@ -8,8 +9,9 @@ export default async function InvoiceDetailsPage({
   params: { id: string };
 }) {
   const { id } = await params;
-
   const invoice = await getInvoiceById(id);
+  const session = await auth();
+  const isAdmin = session?.user.isAdmin;
 
   if (!invoice) {
     return (
@@ -83,6 +85,17 @@ export default async function InvoiceDetailsPage({
           </p>
         </div>
       </Card>
+
+      {isAdmin && (
+        <div className="grid grid-cols-2 gap-3">
+          <Button variant="warning" className="font-bold">
+            Edytuj
+          </Button>
+          <Button variant="danger" className="font-bold">
+            Usuń
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -13,4 +13,16 @@ export const {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user?.email === process.env.ADMIN_EMAIL) {
+        token.isAdmin = true;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user.isAdmin = !!token.isAdmin;
+      return session;
+    },
+  },
 });
