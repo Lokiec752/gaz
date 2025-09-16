@@ -1,5 +1,39 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+This project requires the following environment variables to be set in your `.env.local` file:
+
+### Database Configuration
+
+- `DB_USER` - MongoDB username for database connection
+- `DB_PASSWORD` - MongoDB password for database connection
+- `DB_URL` - MongoDB cluster URL (without the mongodb+srv:// prefix)
+
+### Authentication (Google OAuth)
+
+- `GOOGLE_CLIENT_ID` - Google OAuth 2.0 client ID from Google Cloud Console
+- `GOOGLE_CLIENT_SECRET` - Google OAuth 2.0 client secret from Google Cloud Console
+- `AUTH_SECRET` - Secret key for NextAuth.js token signing (required in production)
+
+### Admin Configuration
+
+- `ADMIN_EMAIL` - Email address of the user who should have admin privileges
+
+### Example .env.local
+
+```
+DB_USER=your_mongodb_username
+DB_PASSWORD=your_mongodb_password
+DB_URL=your_cluster.mongodb.net/your_database_name
+
+GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+AUTH_SECRET=your_random_secret_key_here
+
+ADMIN_EMAIL=admin@example.com
+```
+
 ## Getting Started
 
 First, run the development server:
