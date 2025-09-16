@@ -110,16 +110,14 @@ export default async function InvoiceDetailsPage({
         </div>
       </Card>
 
-      {isAdmin && (
-        <div className="grid grid-cols-2 gap-3">
-          <Link href={`/edit/${invoice.id}`}>
-            <Button variant="warning" className="font-bold">
-              Edytuj
-            </Button>
-          </Link>
-          <DeleteInvoiceButton invoiceId={invoice.id} />
-        </div>
-      )}
+      <div className="flex flex-col gap-4">
+        <Link href={`/edit/${invoice.id}`}>
+          <Button variant="warning" className="font-bold">
+            Edytuj
+          </Button>
+        </Link>
+        {isAdmin && <DeleteInvoiceButton invoiceId={invoice.id} />}
+      </div>
     </div>
   );
 }
