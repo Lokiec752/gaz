@@ -4,6 +4,8 @@ import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
+import { DatePicker } from "@/components/ui/date-picker";
+import { useState } from "react";
 
 function handleNumberInput(event: React.FormEvent<HTMLInputElement>) {
   const input = event.currentTarget;
@@ -35,6 +37,7 @@ type InvoiceFormProps = {
   initialVariableDistribution?: number;
   initialMeterReading22E?: number;
   initialMeterReading22H?: number;
+  initialDate?: Date;
   action: (formData: FormData) => Promise<void>;
 };
 
@@ -47,8 +50,12 @@ export function InvoiceForm({
   initialVariableDistribution,
   initialMeterReading22E,
   initialMeterReading22H,
+  initialDate,
   action,
 }: InvoiceFormProps) {
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    initialDate || new Date()
+  );
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-amber-900">{title}</h1>
@@ -56,6 +63,24 @@ export function InvoiceForm({
       <form className="space-y-6" action={action}>
         <Card className="space-y-4">
           <SectionTitle>Dane z faktury</SectionTitle>
+          <div className="space-y-2">
+            <label
+              htmlFor="date"
+              className="block text-sm font-bold text-amber-600"
+            >
+              Data faktury
+            </label>
+            <DatePicker
+              date={selectedDate}
+              onDateChange={(date) => setSelectedDate(date || new Date())}
+              placeholder="Wybierz datę faktury"
+            />
+            <input
+              type="hidden"
+              name="date"
+              value={selectedDate.toISOString()}
+            />
+          </div>
           <div className="space-y-2">
             <label
               htmlFor="gasFuel"

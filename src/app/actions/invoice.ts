@@ -142,6 +142,7 @@ export async function createInvoice(formData: FormData) {
 
     // Parse form data
     const formDataParsed = {
+      date: new Date(formData.get("date") as string),
       gasFuel: parseFloatLocale(formData.get("gasFuel") as string),
       subscription: parseFloatLocale(formData.get("subscription") as string),
       fixedDistribution: parseFloatLocale(
@@ -162,8 +163,9 @@ export async function createInvoice(formData: FormData) {
     await connectToDatabase();
 
     // Get previous meter readings for usage calculation
-    const currentDate = new Date();
-    const previousMeterReadings = await getPreviousMeterReadings(currentDate);
+    const previousMeterReadings = await getPreviousMeterReadings(
+      formDataParsed.date
+    );
 
     // Calculate charges using your business logic with previous readings
     const charge22H = calculate22HCharge(formDataParsed, previousMeterReadings);
@@ -179,7 +181,6 @@ export async function createInvoice(formData: FormData) {
     const invoiceData = {
       ...formDataParsed,
       userEmail: session.user.email,
-      date: currentDate,
       total: parseFloat(total.toFixed(2)),
       charges: {
         house22E: charge22E,
@@ -227,6 +228,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 
     // Parse form data
     const formDataParsed = {
+      date: new Date(formData.get("date") as string),
       gasFuel: parseFloatLocale(formData.get("gasFuel") as string),
       subscription: parseFloatLocale(formData.get("subscription") as string),
       fixedDistribution: parseFloatLocale(
@@ -258,7 +260,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 
     // Get previous meter readings (excluding the current invoice being updated)
     const previousMeterReadings = await getPreviousMeterReadings(
-      existingInvoice.date
+      formDataParsed.date
     );
 
     // Calculate charges using your business logic with previous readings

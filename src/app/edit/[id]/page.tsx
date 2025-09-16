@@ -49,6 +49,7 @@ export default async function EditInvoicePage({
     <InvoiceForm
       title="Edytuj fakturę"
       submitButtonText="Zapisz zmiany"
+      initialDate={invoice.date}
       initialGasFuel={invoiceData.gasFuel}
       initialSubscription={invoiceData.subscription}
       initialFixedDistribution={invoiceData.fixedDistribution}
