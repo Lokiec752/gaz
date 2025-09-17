@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { notFound, redirect } from "next/navigation";
 
 type EditInvoicePageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export default async function EditInvoicePage({

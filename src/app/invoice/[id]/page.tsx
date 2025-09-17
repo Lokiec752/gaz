@@ -12,7 +12,7 @@ import Link from "next/link";
 export default async function InvoiceDetailsPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   const invoice = await getInvoiceById(id);
