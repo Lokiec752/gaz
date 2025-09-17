@@ -1,10 +1,6 @@
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
-import {
-  deleteInvoiceById,
-  getAllInvoices,
-  getInvoiceById,
-} from "@/app/actions/invoice";
+import { getAllInvoices, getInvoiceById } from "@/app/actions/invoice";
 import { auth } from "@/auth";
 import { DeleteInvoiceButton } from "./DeleteInvoiceButton";
 import Link from "next/link";
@@ -15,6 +11,7 @@ export default async function InvoiceDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+
   const invoice = await getInvoiceById(id);
   const session = await auth();
   const isAdmin = session?.user.isAdmin;
