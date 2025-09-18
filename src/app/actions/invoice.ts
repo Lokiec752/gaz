@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Invoice, InvoiceModel } from "@/models/Invoice";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 type CreateInvoiceData = {
   userEmail: string;
@@ -193,6 +194,11 @@ export async function createInvoice(formData: FormData) {
     const savedInvoice = await invoice.save();
 
     console.log("Invoice created successfully:", savedInvoice._id);
+
+    // Revalidate pages that display invoice data
+    revalidatePath("/dashboard");
+    revalidatePath("/history");
+    revalidatePath("/chart");
   } catch (error) {
     console.error("Error creating invoice:", error);
     // In a real app, you might want to show an error message to the user
@@ -216,6 +222,11 @@ export async function getInvoiceById(id: string): Promise<Invoice | null> {
 export async function deleteInvoiceById(id: string): Promise<void> {
   await connectToDatabase();
   await InvoiceModel.findByIdAndDelete(id).exec();
+
+  // Revalidate pages that display invoice data
+  revalidatePath("/dashboard");
+  revalidatePath("/history");
+  revalidatePath("/chart");
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
@@ -293,6 +304,11 @@ export async function updateInvoice(id: string, formData: FormData) {
     );
 
     console.log("Invoice updated successfully:", updatedInvoice?._id);
+
+    // Revalidate pages that display invoice data
+    revalidatePath("/dashboard");
+    revalidatePath("/history");
+    revalidatePath("/chart");
   } catch (error) {
     console.error("Error updating invoice:", error);
     throw error;
